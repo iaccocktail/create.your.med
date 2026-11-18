@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>藥物雞尾酒實驗室 · 多種藥一起用，會發生什麼事？</title>
+<style>
+:root{--bg:#fff8f0;--card:#ffffff;--tx:#2b2a33;--mu:#6d6a78;--ln:#f0e3d2;--ac:#ff7a59;--ac2:#4f8cff;--ok:#2dae7a;--wa:#f0a020;--bad:#e5524f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1a22;--card:#272330;--tx:#f4eff8;--mu:#b3acc0;--ln:#3a3446;--ac:#ff8d70;--ac2:#7aa5ff;--ok:#4cd197;--wa:#f5b84a;--bad:#f06b68;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d1a22;--card:#272330;--tx:#f4eff8;--mu:#b3acc0;--ln:#3a3446;--ac:#ff8d70;--ac2:#7aa5ff;--ok:#4cd197;--wa:#f5b84a;--bad:#f06b68;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.7 -apple-system,"Noto Sans TC","PingFang TC",sans-serif}
+main{max-width:860px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:26px;margin:6px 0 4px;line-height:1.3}h2{font-size:18px;margin:0 0 6px}
+.sub{color:var(--mu);font-size:14px}
+.card{background:var(--card);border:2px solid var(--ln);border-radius:20px;padding:16px;margin:14px 0}
+.hero{background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 18%,var(--card)),color-mix(in srgb,var(--ac2) 16%,var(--card)))}
+.step{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;font-size:14px;margin-right:6px}
+.warn{font-size:13px;color:var(--mu);background:transparent;border-style:dashed}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;color:var(--tx);cursor:pointer}
+.pre{background:var(--bg);border:2px solid var(--ln);border-radius:999px;padding:8px 14px;font-size:14px}
+.pre:hover,.pre:active{border-color:var(--ac)}
+.grp{margin:14px 0 6px;font-weight:700;font-size:14px}.grp small{font-weight:400;color:var(--mu)}
+.dr{background:var(--bg);border:2px solid var(--ln);border-radius:16px;padding:8px 12px;text-align:left;min-width:104px;transition:transform .12s}
+.dr:active{transform:scale(.96)}
+.dr b{display:block;font-size:15px}.dr span{font-size:12px;color:var(--mu)}
+.dr.on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 16%,var(--bg))}
+.tray{min-height:48px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 12px;border-radius:14px;background:var(--bg);border:2px dashed var(--ln);margin-top:10px}
+.pill{display:inline-block;padding:2px 12px;border-radius:999px;font-weight:700;font-size:14px;color:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.row{grid-template-columns:1fr}}
+.bar{margin:10px 0;font-size:14px}.bar div{display:flex;justify-content:space-between}
+.bar i{display:block;height:12px;border-radius:8px;background:var(--ln);overflow:hidden;margin-top:3px}
+.bar u{display:block;height:100%;border-radius:8px;transition:width .5s}
+.bar small{color:var(--mu);font-size:12px}
+.verdict{font-size:21px;font-weight:800;line-height:1.4}
+ul{margin:6px 0 0;padding-left:20px;font-size:15px}li{margin:6px 0}
+svg{width:100%;height:auto;display:block;margin-top:8px}
+input[type=range]{width:100%;accent-color:var(--ac)}
+details summary{cursor:pointer;font-weight:700}
+</style></head><body><main>
+<div class="card hero">
+<h1>💊 藥物雞尾酒實驗室</h1>
+<div>只吃一種藥，有時候病菌或病毒很快就「學會」對付它；把幾種藥<b>搭配</b>起來一起用，效果會好很多——這就是<b>雞尾酒療法</b>。</div>
+<div class="sub" style="margin-top:6px">這裡用 HIV 治療當範例，你可以自己配配看，看看體內會發生什麼事 👇</div>
+<details style="margin-top:10px"><summary>🔐 為什麼要搭配？（點開看比喻）</summary>
+<div class="sub" style="margin-top:6px">想像病毒是一個很會開鎖的小偷。只有一道鎖，他試幾次就破解了；裝上 3 道不同的鎖，他同時破解的機率就小很多。每種藥鎖住病毒繁殖的不同環節，合起來又穩又久。</div></details>
+</div>
+
+<div class="card warn">📖 這是簡化的教學小遊戲，數字只是示意，不能當作用藥建議。真正的處方一定要由醫師依照檢查結果決定喔。</div>
+
+<div class="card"><h2><span class="step">1</span>自己動手配藥 <span class="sub" id="cnt"></span></h2>
+<div class="sub">點藥物加入「藥盒」，最多 4 顆，再點一次就拿掉。</div>
+<div class="tray" id="tray"></div>
+<button class="pre" id="clr" style="margin-top:8px">🧹 清空藥盒</button>
+<div id="drugs"></div>
+<div style="margin-top:16px">🦠 一開始病毒有多多？ <b id="v0t"></b>
+<input type="range" id="v0" min="3" max="6" step="0.1" value="5"><div class="sub">往右＝病毒越多、越難治</div></div></div>
+
+<div class="card"><h2><span class="step">2</span>24 週後會怎麼樣？</h2>
+<div class="verdict" id="vd"></div><div class="sub" id="vds"></div>
+<svg id="ch" viewBox="0 0 600 230"></svg>
+<div class="sub">藍線＝病毒數量（越低越好）　綠色虛線＝免疫戰士 CD4（越高越好）</div></div>
+
+<div class="row">
+<div class="card"><h2>📊 成績單</h2><div id="bars"></div></div>
+<div class="card"><h2>🤢 可能的不舒服</h2><div id="tox"></div></div></div>
+<div class="card"><h2>💡 這組配藥的小知識</h2><ul id="pts"></ul></div>
+<div class="sub" style="text-align:center">給想深入的人：藥名下方的小字是英文藥名與類別，可以拿去查更多資料。</div>
+</main>
+<script>
+const D=[
+{id:'BIC',n:'Bictegravir',g:'INSTI',p:2.0,rb:.95,t:{cns:1,wt:1},note:'Integrase strand transfer inhibitor；高抗藥障礙'},
+{id:'DTG',n:'Dolutegravir',g:'INSTI',p:2.0,rb:.95,t:{cns:1,wt:2},note:'INSTI；高抗藥障礙，可與 3TC 組成雙藥療法'},
+{id:'RAL',n:'Raltegravir',g:'INSTI',p:1.6,rb:.5,t:{},note:'第一代 INSTI；一天兩次，抗藥障礙較低'},
+{id:'EFV',n:'Efavirenz',g:'NNRTI',p:1.5,rb:.25,t:{cns:3},note:'NNRTI；單點突變 K103N 即抗藥，常見夢境/頭暈'},
+{id:'RPV',n:'Rilpivirine',g:'NNRTI',p:1.3,rb:.3,t:{},note:'NNRTI；需隨餐服用，勿併用 PPI'},
+{id:'DRV/r',n:'Darunavir/r',g:'PI',p:1.8,rb:.9,t:{gi:2,lip:2},note:'Boosted PI；高抗藥障礙；ritonavir 為 CYP3A4 抑制劑'},
+{id:'ATV/r',n:'Atazanavir/r',g:'PI',p:1.5,rb:.7,t:{gi:1,lip:2,liv:2},note:'Boosted PI；高膽紅素血症、腎結石'},
+{id:'MVC',n:'Maraviroc',g:'CCR5i',p:1.0,rb:.5,t:{liv:1},note:'Entry inhibitor；須先驗 tropism（僅限 R5）'},
+{id:'TAF',n:'Tenofovir alafenamide',g:'NRTI',p:.8,rb:.8,t:{ren:1,bone:1,wt:1},note:'NRTI backbone；腎/骨影響小於 TDF'},
+{id:'TDF',n:'Tenofovir disoproxil',g:'NRTI',p:.8,rb:.8,t:{ren:3,bone:3},note:'NRTI；腎小管毒性、骨密度下降；同時抗 HBV'},
+{id:'FTC',n:'Emtricitabine',g:'NRTI',p:.7,rb:.5,t:{},note:'NRTI；M184V 抗藥；同時抗 HBV'},
+{id:'3TC',n:'Lamivudine',g:'NRTI',p:.7,rb:.5,t:{},note:'NRTI；與 FTC 屬同類似物，不宜併用'},
+{id:'ABC',n:'Abacavir',g:'NRTI',p:.7,rb:.5,t:{liv:1,cv:2},note:'NRTI；須先驗 HLA-B*5701（過敏反應）'},
+{id:'AZT',n:'Zidovudine',g:'NRTI',p:.6,rb:.4,t:{heme:3,gi:2,lip:1},note:'舊式 NRTI；貧血、嗜中性球低下'}];
+const TL={ren:'🫘 腎臟負擔',bone:'🦴 骨頭',cns:'😵 頭暈、夢多、情緒',gi:'🤢 腸胃不適',lip:'🩸 血脂變高',liv:'🟡 肝臟/膽紅素',heme:'🩸 貧血',wt:'⚖️ 體重增加',cv:'❤️ 心血管'};
+const COL={INSTI:'#4f8cff',NNRTI:'#b06cf0',PI:'#e5524f',CCR5i:'#2dae7a',NRTI:'#f0a020'};
+let sel=new Set();
+const $=id=>document.getElementById(id);
+const grpNames={INSTI:['🔵 主力 A：切斷病毒「接進細胞DNA」','INSTI 整合酶抑制劑'],PI:['🔴 主力 B：讓病毒「組裝失敗」','PI 蛋白酶抑制劑'],NNRTI:['🟣 主力 C：卡住病毒「複製機器」','NNRTI 非核苷類'],CCR5i:['🟢 特殊：擋住病毒「入口」','CCR5 進入抑制劑'],NRTI:['🟡 輔助隊友：打底打基礎（常配 2 顆）','NRTI 核苷類 backbone']};
+function build(){
+ let h='';for(const g in grpNames){h+=`<div class="grp">${grpNames[g][0]} <small>${grpNames[g][1]}</small></div><div class="chips">`+D.filter(d=>d.g==g).map(d=>`<button class="dr" data-id="${d.id}" style="border-left:6px solid ${COL[g]}"><b>${d.id}</b><span>${d.n}</span></button>`).join('')+'</div>'}
+ $('drugs').innerHTML=h;
+ $('clr').onclick=()=>{sel.clear();run()};
+ $('drugs').onclick=e=>{const b=e.target.closest('.dr');if(!b)return;const id=b.dataset.id;if(sel.has(id))sel.delete(id);else if(sel.size<4)sel.add(id);run()};
+ $('v0').oninput=run;
+}
+function counted(ds){ // remove redundant drugs within same class
+ const out=[];const seenNR=new Set();
+ const by={};ds.forEach(d=>{const k=d.g=='NRTI'?(['FTC','3TC'].includes(d.id)?'NRTI-C':['TDF','TAF'].includes(d.id)?'NRTI-T':d.id):d.g;(by[k]=by[k]||[]).push(d)});
+ for(const k in by)out.push(by[k].sort((a,b)=>b.p-a.p)[0]);
+ return out;
+}
+function run(){
+ const ds=D.filter(d=>sel.has(d.id)),cs=counted(ds);
+ document.querySelectorAll('.dr').forEach(b=>b.classList.toggle('on',sel.has(b.dataset.id)));
+ $('cnt').textContent=`（${sel.size}/4）`;
+ $('tray').innerHTML=ds.length?ds.map(d=>`<span class="pill" style="background:${COL[d.g]}">${d.id}</span>`).join(''):'<span class="sub">藥盒是空的，選一顆試試 👆</span>';
+ const v0=+$('v0').value;$('v0t').textContent=v0<3.7?'偏少':v0<4.7?'中等':v0<5.5?'偏多':'非常多';
+ const pw=cs.reduce((s,d)=>s+d.p,0);
+ const hasAnchor=cs.some(d=>d.g!='NRTI'),nr=cs.filter(d=>d.g=='NRTI').length;
+ const hasDTG3TC=sel.has('DTG')&&(sel.has('3TC')||sel.has('FTC'))&&cs.length==2;
+ const D_=ds.length?5*(1-Math.exp(-pw/1.6)):0;
+ const n=cs.length;
+ let risk=[100,88,58,20,14][Math.min(n,4)];
+ if(hasDTG3TC)risk=24;
+ if(!hasAnchor&&n>0)risk+=25;
+ const an=cs.filter(d=>d.g!='NRTI').sort((a,b)=>b.rb-a.rb)[0];
+ if(an&&an.rb<.4&&n<=3)risk+=14;
+ if(an&&an.rb>=.9&&n>=3)risk-=6;
+ risk=Math.max(0,Math.min(100,risk));
+ // viral load curve
+ const T=[];const fl=1.3;
+ for(let t=0;t<=24;t++){
+  let v=v0-D_*(1-Math.exp(-t/4.5));
+  if(risk>=45&&t>8){v+= (v0-v-.3)*Math.min(1,(risk-35)/65)*(1-Math.exp(-(t-8)/6))}
+  v=Math.max(fl,Math.min(v0,v));T.push(v)}
+ const cd=T.map((v,t)=>300+(ds.length?300*((v0-v)/(v0-fl))*(1-Math.exp(-t/16)):0));
+ const vEnd=T[24],sup=vEnd<=1.7;
+ // tox
+ const tx={};ds.forEach(d=>{for(const k in d.t)tx[k]=(tx[k]||0)+d.t[k]});
+ // dup penalty note
+ const dup=ds.length-cs.length;
+ let toxTotal=Object.values(tx).reduce((a,b)=>a+b,0);
+ const eff=Math.round(Math.min(100,(v0-vEnd)/(v0-fl)*100));
+ const burden=Math.min(100,ds.length*22+(sel.has('RAL')?10:0)+(sel.has('RPV')?5:0));
+ // verdict
+ let vd,col,desc;
+ if(!ds.length){vd='👆 先從藥盒放一顆藥吧';col='var(--mu)';desc='不放藥的話，病毒會一直維持原本的數量。自由搭配，看看哪種組合最好！'}
+ else if(sup&&risk<30){vd='🎉 配得好！病毒被壓到測不到';col='var(--ok)';desc='病毒降到檢驗測不出來（<50 copies/mL），而且病毒不容易變聰明。'}
+ else if(sup){vd='😬 暫時有效，但不夠穩';col='var(--wa)';desc='短期壓得住，但病毒可能慢慢學會對付這些藥，之後容易失效。'}
+ else{vd='😢 這組效果不好，病毒反彈了';col='var(--bad)';desc='病毒沒被壓下去或又回來了。換個搭配試試，看看少了什麼？'}
+ $('vd').textContent=vd;$('vd').style.color=col;$('vds').textContent=desc;
+ chart(T,cd,v0,fl);
+ const bar=(l,v,c,t,h)=>`<div class="bar"><div><span>${l}</span><b>${t}</b></div><i><u style="width:${v}%;background:${c}"></u></i>${h?`<small>${h}</small>`:''}</div>`;
+ const rc=risk<30?'var(--ok)':risk<55?'var(--wa)':'var(--bad)';
+ $('bars').innerHTML=bar('🦠 病毒被壓下去多少',eff,'var(--ac2)',eff+'%','越高越好')+bar('🧠 病毒「變聰明」機率',risk,rc,risk<30?'低':risk<55?'中':'高','越低越好')+bar('💊 每天要吃幾顆',burden,'var(--wa)',ds.length+' 顆','越少越方便')+bar('🛡️ 免疫戰士 CD4（24週）',Math.min(100,cd[24]/8),'var(--ok)',Math.round(cd[24]),'健康人約 500–1500')
+  +`<div class="sub">真正有用的藥：${n} 種${dup?'（有 '+dup+' 顆跟別顆功能重複，沒加分）':''}</div>`;
+ const ks=Object.keys(tx);
+ $('tox').innerHTML=ks.length?ks.map(k=>bar(TL[k],tx[k]/3*100,tx[k]>=3?'var(--bad)':tx[k]>=2?'var(--wa)':'var(--ok)',['','機率低','中等','較需留意'][Math.min(3,tx[k])])).join(''):'<div class="sub">目前選的藥，這裡沒有特別要注意的 👍</div>';
+ // points
+ const P=[];
+ if(ds.length==1)P.push('只用一種藥，病毒很快就能找到破解方法。這就是要「雞尾酒」的原因！');
+ if(ds.length>=2&&!hasAnchor)P.push('只有輔助隊友、沒有主力（藍/紅/紫），打不太贏。通常是「1 個主力 + 2 個輔助」。');
+ if(dup>0)P.push('有幾顆藥功能其實一樣（例如 FTC 和 3TC），一起吃不會更強，只會多一份副作用。');
+ if(hasDTG3TC)P.push('DTG + 3TC 只用兩顆也能成功，但不是每個人都適合（例如病毒很多或有 B 肝的人）。');
+ if(sel.has('ABC'))P.push('Abacavir：用藥前要驗基因 HLA-B*5701，有的話可能嚴重過敏，所以不能亂吃。');
+ if(sel.has('TDF'))P.push('TDF 對腎臟和骨頭比較辛苦，腎功能不好的人通常會改用 TAF。');
+ if(sel.has('ATV/r')&&sel.has('TDF'))P.push('ATV/r 會讓 TDF 在體內變多，增加腎臟負擔。藥和藥之間也會「互相影響」！');
+ if(sel.has('EFV'))P.push('EFV 病毒只要一個小變化就能對付它，而且有些人會頭暈、做怪夢。');
+ if(sel.has('RPV'))P.push('RPV 一定要跟著正餐吃才吸收得到，也不能搭配某些胃藥。');
+ if(sel.has('MVC'))P.push('Maraviroc 只對特定類型的病毒有效，要先做病毒檢測才知道適不適合。');
+ if(sel.has('AZT'))P.push('AZT 是早期用的藥，可能引起貧血，現在比較少當第一線。');
+ if(sel.has('DRV/r')||sel.has('ATV/r'))P.push('藥名後面的 /r 代表加了 ritonavir 當「加強劑」，它會影響很多其他藥，要特別小心搭配。');
+ if(sup&&risk<30)P.push('好消息：病毒一直壓在測不到（U=U），就不會透過性行為傳給別人。這是現代治療最重要的成果之一 🌈');
+ if(!P.length)P.push('放入藥物後，這裡會出現這組配藥的小知識。');
+ $('pts').innerHTML=P.map(x=>`<li>${x}</li>`).join('');
+}
+function chart(T,cd,v0,fl){
+ const W=600,H=230,L=44,R=44,Tp=14,B=30,x=t=>L+t/24*(W-L-R),yv=v=>Tp+(1-(v-1)/(6.2-1))*(H-Tp-B),yc=c=>Tp+(1-(c-200)/(700-200))*(H-Tp-B);
+ let s='';for(let k=1;k<=6;k++)s+=`<line x1="${L}" x2="${W-R}" y1="${yv(k)}" y2="${yv(k)}" stroke="var(--ln)"/><text x="${L-6}" y="${yv(k)+4}" text-anchor="end" font-size="10" fill="var(--mu)">10^${k}</text>`;
+ for(let t=0;t<=24;t+=4)s+=`<text x="${x(t)}" y="${H-10}" text-anchor="middle" font-size="10" fill="var(--mu)">W${t}</text>`;
+ s+=`<line x1="${L}" x2="${W-R}" y1="${yv(1.7)}" y2="${yv(1.7)}" stroke="var(--ok)" stroke-dasharray="4 3"/><text x="${W-R+3}" y="${yv(1.7)+3}" font-size="9" fill="var(--ok)">&lt;50</text>`;
+ s+=`<polyline fill="none" stroke="var(--ac)" stroke-width="2.5" points="${T.map((v,t)=>x(t)+','+yv(v)).join(' ')}"/>`;
+ s+=`<polyline fill="none" stroke="var(--ok)" stroke-width="2" stroke-dasharray="5 3" points="${cd.map((v,t)=>x(t)+','+yc(v)).join(' ')}"/>`;
+ s+=`<text x="${L}" y="10" font-size="10" fill="var(--ac)">━ 病毒數量</text><text x="${W-R}" y="10" text-anchor="end" font-size="10" fill="var(--ok)">┅ 免疫戰士 CD4</text>`;
+ $('ch').innerHTML=s;
+}
+build();run();
+</script></body></html>
